@@ -1,10 +1,10 @@
 ## code to prepare `Pak_Shapfiles` dataset goes here
 
-rm(list=ls())
+# rm(list=ls())
 ################################################################################
-library(sf)
-library(tidyverse)
-library(janitor)
+# library(sf)
+# library(tidyverse)
+# library(janitor)
 ################################################################################
 #Pakistan Shape file for app input
 
