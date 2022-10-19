@@ -1,0 +1,268 @@
+indicator,context
+Poverty Rate (%),negative
+National poverty rank (N),negative
+Provincial poverty rank (N),negative
+"Number of poor (1,000s)",negative
+Access to improved drinking water (% of population),positive
+Access to piped water (% of population),positive
+"Access to improved drinking water, excl. piped water (% of population)",positive
+Access to improved water within 30 minutes round trip,positive
+Access to improved toilet facilities (% of population),positive
+Access to flush toilet connected to sewer (% of population),positive
+Access to flush toilet connected to septic tank (% of population),positive
+Open defecation (% of population),negative
+Access to electricity (% of population),positive
+Reliance on clean fuels for cooking (% of population),positive
+Households' mobile phone ownership (% of population),positive
+"Accessibility, health (% of population within 15 minutes to clinic/hospital)",positive
+"Accessibility, transportation (% of population within 15 minutes to public transportation)",positive
+Household size,negative
+Household dependency ratio,negative
+Household child dependency ratio,negative
+Household senior dependency ratio,negative
+"Occupancy, present occupancy status-owner (% of population)",positive
+"Occupancy, present occupancy status-rented (% of population)",positive
+"Occupancy, present occupancy status-other (% of population)",positive
+Improved roof material (% of population),positive
+Improved wall material (% of population),positive
+Improved roof and wall material (% of population),positive
+Household members per room,negative
+Overcrowding (% of population),negative
+"Labor force participation rate (% of working age population, 15-64 years old)",positive
+Employment in agriculture (% of total employment),negative
+Employment in industry (% of total employment),negative
+Employment services (% of total employment),negative
+Wage and salaried employment (% of total employment),positive
+"Self-employment, non-agriculture (% of total employment)",negative
+"Self-employment, agriculture (% of total employment)",negative
+Unpaid employment (% of total employment),negative
+Child labor (% of children aged 10-17),negative
+"Labor force participation rate, male (% of male working age population, 15-64 years old)",positive
+"Employment in agriculture, male (% of male employment)",negative
+"Employment in industry, male (% of male employment)",negative
+"Employment services, male (% of male employment)",negative
+"Wage and salaried employment, male (% of male employment)",positive
+"Self-employment, non-agriculture, male (% of male employment)",negative
+"Self-employment, agriculture, male (% of male employment)",negative
+"Unpaid employment, male (% of male employment)",negative
+"Labor force participation rate, female (% of female working age population, 15-64 years old)",positive
+"Employment in agriculture, female (% of female employment)",negative
+"Employment in industry, female (% of female employment)",negative
+"Employment services, female (% of female employment)",negative
+"Wage and salaried employment, female (% of female employment)",positive
+"Self-employment, non-agriculture, female (% of female employment)",negative
+"Self-employment, agriculture, female (% of female employment)",negative
+"Unpaid employment, female (% of female employment)",negative
+"Gross school enrollment, primary school, 6-10 years old (% gross)",positive
+"Gross school enrollment, middle school, 11-13 years old (% gross)",positive
+"Net school enrollment, primary school, 6-10 years old (% net)",positive
+"Net school enrollment, middle school, 11-13 years old (% net)",positive
+"Gross school enrollment, primary school, 6-10 years old, male (% gross male)",positive
+"Gross school enrollment, middle school, 11-13 years old, male (% gross male)",positive
+"Net school enrollment, primary school, 6-10 years old, male (% net male)",positive
+"Net school enrollment, middle school, 11-13 years old, male (% net male)",positive
+"Gross school enrollment, primary school, 6-10 years old, female (% gross female)",positive
+"Gross school enrollment, middle school, 11-13 years old, female (% gross female)",positive
+"Net school enrollment, primary school, 6-10 years old, female (% net female)",positive
+"Net school enrollment, middle school, 11-13 years old, female (% net female)",positive
+"Youth literacy, 15-24 years old (% of population aged 15-24)",positive
+"Youth literacy, 15-24 years old, female (% of women aged 15-24)",positive
+"Youth literacy, 15-24 years old male (% of men aged 15-24)",positive
+"Adult literacy, 25 or more years old (% of population aged 25 or more)",positive
+"Adult literacy, 25 or more years old, female (% of women aged 25 or more)",positive
+"Adult literacy, 25 or more years old, male (% of men aged 25 or more)",positive
+"Primary completion rate, 14-17 years old (% of population aged 14-17)",positive
+"Youth literacy gender parity index, 15-24 years old",positive
+"Adult literacy gender parity index, 25 or more years old",positive
+"Primary completion gender parity index, 14-17 years old",positive
+"Gross enrolment rate in primary gender parity index, 6-10 years old",positive
+"Gross enrolment rate in middle school gender parity index, 11-13 years old",positive
+"Net enrolment rate in primary gender parity index, 6-10 years old",positive
+"Net enrolment rate in middle school gender parity index, 11-13 years old",positive
+Diarrhea incidence (% of children under 5),negative
+Diarrhea Treatment with Oral Rehydration Salts (% of children under 5 who had diarrhea during a 30-day recall period),positive
+Pregnant women receiving antenatal care (% of women  aged 15-49 who gave birth in last 3 years),positive
+Assisted birth at healthcare facility (% of women aged 15-49 who gave birth in last 3 years),positive
+"Immunization, fully immunized (% children 12-24 months)",positive
+"Immunization, polio three doses (% children 12-24 months)",positive
+"Immunization: diphtheria, pertussis, and tetanus - three doses (% children 12-24 months)",positive
+Urban share of population (% of population),positive
+Access to improved drinking water - MICS (% of population),positive
+Access to piped water - MICS (% of population),positive
+Access to motorized pump (% of population),positive
+Access to hand pump (% of population),positive
+Access to improved toilet facilities - MICS (% of population),positive
+Access to flush toilet connected to sewer - MICS (% of population),positive
+Access to flush toilet connected to septic tank - MICS (% of population),positive
+Open defecation - MICS (% of population),negative
+Women's marriage before age 15 (% of women aged 20-24),negative
+Women's marriage before age 18 (% of women aged 20-24),negative
+Average age at first marriage of women (married woman aged 15 to 49),negative
+Child registration (% of children aged under 5),positive
+"Prevalence of stunting, height for age (% of children under 5)",negative
+"Prevalence of wasting, weight for height (% of children under 5)",negative
+"Prevalence of underweight, weight for age (% of children under 5)",negative
+Diarrhea incidence (% of children under 5 who had diarrhea during a 2-week recall period),negative
+Early initiation of breastfeeding (% of recent mothers),positive
+Exclusive breastfeeding (% of children under 6 months),positive
+Children given plain water (% of children under 6 months),negative
+Children given milk (% of children under 6 months),negative
+Children given baby formula (% of children under 6 months),positive
+Children left unattended (% of children under 5),negative
+Toilet use by children (% of children 12-35 months old),positive
+Diarrhea treatment- less than regular liquid (% of children under 5 who had diarrhea episode in the two weeks prior to the survey),negative
+Diarrhea treatment- less than regular food (% of children under 5 who had a diarrhea episode in the two weeks prior to the survey),negative
+Diarrhea Treatment with Oral Rehydration Salts (% of children under 5 who had a diarrhea episode in the two weeks prior to the survey),positive
+Pregnant women receiving prenatal care (% of ever-married women aged 15-49 with a live birth in the 2 years before the survey),positive
+Assisted birth (% of ever-married women aged 15-49 with a live birth in the 2 years before the survey),positive
+Average age at first birth of women,negative
+"Immunization, BCG for Tuberculosis (% of children under 3)",positive
+"Immunization, Polio at birth (% of children under 3)",positive
+"Immunization, Polio-first dose (% of children under 3)",positive
+"Immunization, Polio-second dose (% of children under 3)",positive
+"Immunization, Polio-third dose (% of children under 3)",positive
+"Immunization, Penta-1 (% of children under 3)",positive
+"Immunization, Penta-2 (% of children under 3)",positive
+"Immunization, measles (% of children under 3)",positive
+Vitamin A supplementation coverage rate (% of children ages 6-59 months),positive
+Using soap for handwashing (% of population),positive
+Using adequately iodized salt (% of population),positive
+Treating water before drinking (% of population),positive
+Population [Population Census 2017 – Provisional Results],negative
+Household size,negative
+Urban share of population,negative
+Average age at first marriage of women,negative
+Women’s marriage before age 15 (% of women aged 20-24),negative
+Women’s marriage before age 18 (% of women aged 20-24),negative
+Moderate or severe food insecurity,negative
+Severe food insecurity,negative
+Prevalence of underweight among adolescents 10-19 years,negative
+Prevalence of normal weight among adolescents 10-19 years,positive
+Prevalence of overweight among adolescents 10-19years,negative
+Prevalence of obesity among adolescents 10-19 years,negative
+Prevalence of underweight among adolescent girls 10-19 years,negative
+Prevalence of normal weight among adolescent girls 10-19 years,positive
+Prevalence of overweight among adolescent girls 10-19 years,negative
+Prevalence of obesity among adolescent girls 10-19 years:,negative
+Prevalence of underweight among adolescent boys 10-19 years,negative
+Prevalence of normal weight among adolescent boys 10-19 years,positive
+Prevalence of overweight among adolescent boys 10-19 years,negative
+Prevalence of obesity among adolescent boys 10-19 years,negative
+Population covered under social protection,positive
+"Occupancy, present occupancy status-owner",negative
+"Occupancy, present occupancy status-rented",negative
+"Occupancy, present occupancy status-other",negative
+Improved roof material,positive
+Improved wall material,positive
+Improved roof and wall material,positive
+Household members per bedroom,negative
+Access to electricity,positive
+Reliance on clean fuels for cooking,positive
+Mobile phone ownership at the household level,positive
+Access to improved drinking water,positive
+Access to piped water,positive
+Access to motorized pump,positive
+Access to hand pump,positive
+"Access to improved drinking water, excl. piped water",positive
+Access to improved toilet facilities,positive
+Access to flush toilet connected to sewer,positive
+Access to flush toilet connected to septic tank,positive
+Open defecation,negative
+Shared toilet,negative
+Toilet use by infants 12 to 35 months,positive
+Toilet disposal of stool of infants 12 to 35 months,positive
+Use of soap for handwashing,positive
+Handwashing before preparing food,positive
+Handwashing before eating,positive
+Handwashing before feeding a child,positive
+Handwashing after handling feces/diapers,positive
+Handwashing after defecating/using latrine,positive
+Use of adequately iodized salt,positive
+Treating water before drinking,positive
+"Boiling, chlorination, or filtering water before drinking",positive
+Full immunization coverage among one-year-olds,positive
+Polio immunization coverage among one-year-olds,positive
+DPT immunization coverage among one-year-olds,positive
+Children ever breastfed,positive
+Early initiation of breastfeeding,positive
+Infants under 6 months exclusively breastfed,positive
+Infants under 6 months given milk,positive
+Infants under 6 months given plain water,positive
+Infants under 6 months given baby formula,positive
+Pre-lacteal feeding,positive
+Colostrum feeding,positive
+Continued breastfeeding at 1 year,positive
+Continued breastfeeding at 2 years,positive
+Diarrhea incidence in children under 5,negative
+Diarrhea treatment for children under 5,positive
+ORS diarrhea treatment for children under 5,positive
+Zinc supplementation in the management of diarrhea for children under 5,positive
+Antibiotic treatment in the management of diarrhea,positive
+Prevalence of acute respiratory infection on children under 5,negative
+Deworming in children under 5,positive
+Vitamin A supplementation for children under 5,positive
+Seeing disability among children aged 24-59 months,negative
+Hearing disability among children aged 24-59 months,negative
+Walking disability among children aged 24-59 months,negative
+Remembering/concentrating among children aged 24-59 months,negative
+Difficulty in self-care among children aged 24-59 months,negative
+Difficulty in language/communication among children aged 24-59 months,negative
+Functional disability among children aged 24-59 months,negative
+"Prevalence of stunting among children under 5, height for age",negative
+"Prevalence of wasting among children under 5, weight for height",negative
+"Prevalence of underweight among children under 5, weight for age",negative
+"Prevalence of overweight among children under 5, weight for age",negative
+Age of women at first birth,negative
+Pregnant women receiving antenatal care,negative
+Average number of antenatal care checkups,positive
+Births with at least four antenatal care checkups,positive
+Average number of controls made during antenatal care,positive
+Women receiving tetanus shots during pregnancy,positive
+Women receiving iron folic acid during pregnancy,positive
+Women receiving micronutrients during pregnancy,positive
+Women receiving calcium tablets during pregnancy,positive
+Women visited by LHW,positive
+Assisted birth at a healthcare facility,positive
+Children below normal size at birth (self-report),positive
+Children weighed at birth,positive
+Children with normal weight at birth,positive
+Skin to skin contact,positive
+Umbilical cord care,positive
+Postnatal care within two days of birth,positive
+Newborns receiving well-baby care within two days of birth,positive
+Prevalence of underweight among women 15-49 years,negative
+Prevalence of normal weight among women 15-49 years,positive
+Prevalence of overweight among women 15-49 years,negative
+Prevalence of obesity among women 15-49 years,negative
+"Accessibility, health (% of population within 15 minutes to clinic/hospital)",positive
+Assisted birth at healthcare facility (% of women aged 15-49 who gave birth in last 3 years),positive
+Diarrhea treatment- ORS (% of children under 5 who had diarrhea during a 30-day recall period),positive
+"Immunization, DPT three doses (% children 12-24 months)",positive
+"Immunization, fully immunized (% children 12-24 months)",positive
+"Immunization, polio three doses (% children 12-24 months)",positive
+Pregnant women receiving antenatal care (% of women  aged 15-49 who gave birth in last 3 years),positive
+"Primary completion rate, 14-17 years old, boys (% of boys aged 14-17)",positive
+"Primary completion rate, 14-17 years old, girls (% of girls aged 14-17)",positive
+"Exclusive breastfeeding, first 3 days after birth (% of children)",positive
+Stool disposal (% of children aged 12-35 months using toilet),positive
+Pregnant women receiving prenatal care (%),positive
+"Immunization, Polio-3 (% of children age 12-23 months)",positive
+"Immunization, Polio-2 (% of children age 12-23 months)",positive
+"Immunization, Polio-1 (% of children age 12-23 months)",positive
+"Immunization, Polio at birth (% of children age 12-23 months)",positive
+"Immunization, Penta-2 (% of children age 12-23 months)",positive
+"Immunization, Penta-1 (% of children age 12-23 months)",positive
+Diarrhea treatment (% of children under 5 who were given ORS during last diarrhe,positive
+"Immunization, measles (% of children age 12-23 months)",positive
+Diarrhea treatment (% of children under 5 who were given less foods during last,negative
+Diarrhea treatment (% of children under 5 who were given less liquid during last,negative
+Diarrhea incidence (% of children under 5 who had diarrhea during a 2-week recal,negative
+Child was registered (reported or recalled) (% of children aged under 5),positive
+Percentage of women age 20-24 years who were first married before age 18,negative
+"Immunization, BCG (% of children age 12-23 months)",positive
+Assisted birth (% of births assisted by health professionals),positive
+Percentage of women age 20-24 years who were first married before age 15,negative
+Handwashing facility where water and soap or detergent are present (% of populat,positive
+First breastfeeding within 1 hour after birth (% of children),positive
+Treating water before drinking (% of population),positive
+Salt testing positive for any iodide/iodate among households in which salt was t,negative
