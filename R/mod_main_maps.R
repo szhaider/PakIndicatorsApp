@@ -21,30 +21,8 @@ mod_main_maps_ui <- function(id){
   ns <- NS(id)
   tagList(
 
-    # shiny::navbarPage(
-    #
-    #  title = "Pakistan Indicators",
-    #
-    #
-    #
-    # header=tags$style(HTML("
-    #                                   .container-fluid{
-    #                                     padding: 3px !important;
-    #                                   }
-    #
-    #
-    #                                   .navbar{
-    #                                    margin-bottom: 0px !important;
-    #                                    margin-left: 1px !important;
-    #                                    margin-right: 1px !important;
-    #                                    padding: 0px !important;
-    #                                   }")),
-
-    # shiny::tabPanel("INTERACTIVE MAPS",
-
 tagList(
                     tags$style(type = "text/css", "#main_maps_1-main_map {height: calc(97vh - 100px) !important;}"),
-                    # tags$style(type = 'text/css', '#id-main_map {height: calc(97vh - 100px) !important;}', style= 'padding:0px;'),
                     leaflet::leafletOutput(ns("main_map")),
 
                     shiny::verbatimTextOutput(ns("source_main_map")),
@@ -92,7 +70,8 @@ tagList(
                                          shiny::selectInput(ns("family"),
                                                             "Select Domain:",
                                                             choices = unique(Pak_Indicators_Data$domain),
-                                                            selected = "Household Welfare"),
+                                                            selected = "Household Welfare"
+                                                            ),
 
                                          shiny::selectInput(ns("stat"),
                                                             "Select Indicator: ",
@@ -103,7 +82,9 @@ tagList(
                                                             choices = unique(Pak_Indicators_Data$year_1),
                                                             # selected = median(Pak_Indicators_Data$year),
                                                             width = "100%",
-                                                            multiple = FALSE),
+                                                            multiple = FALSE,
+
+                                                            ),
 
                                          downloadButton(ns("mapdata"), "Data", class= "btn-sm"),
                                          actionButton(ns("screenshot"), "Image",class="btn-sm", icon=icon("camera")),
@@ -113,8 +94,7 @@ tagList(
                     )
     )
 )
-  # )
-   # )
+
 }
 
 #' main_maps Server Functions
@@ -301,7 +281,7 @@ mod_main_maps_server <- function(id){
 
     #Screenshot
     shiny::observeEvent(input$screenshot,{
-      shinyscreenshot::screenshot(filename = glue::glue("{ input$stat }", " ", "input$time"),
+      shinyscreenshot::screenshot(filename = glue::glue("{ input$stat }", "_", { "input$time" }),
                                   id = "main_map", scale = 0.90, timer = 1)
     })
 

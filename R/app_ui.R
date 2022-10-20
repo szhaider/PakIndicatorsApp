@@ -23,24 +23,21 @@ app_ui <- function() {  #request
                                         .container-fluid{
                                           padding: 3px !important;
                                         }
-
-
-                                        .navbar{
+                                         .navbar{
                                          margin-bottom: 0px !important;
                                          margin-left: 1px !important;
                                         }")),
     shiny::tabPanel(
       "INTERACTIVE MAPS",
-
-
-      # title = "Pakistan Indicators",
-
-
       mod_main_maps_ui("main_maps_1")
-    )
+                   ),
+    shiny::tabPanel(
+      "COMPARISON MAPS",
+      mod_comparison_maps_ui("comparison_maps_1")
+                  )
 )
     )
-  # )
+
 )
 
 }

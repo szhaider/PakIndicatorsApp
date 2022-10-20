@@ -2,6 +2,7 @@
 
 export("%>%")
 export(run_app)
+import(leaflet)
 import(shiny)
 importFrom(dplyr,filter)
 importFrom(glue,glue)
