@@ -43,7 +43,8 @@ Pak_Shapfiles <-
 
 
              TRUE ~ district
-           ))
+           )) %>%
+  dplyr::arrange(district)
 ################################################################################
 
 #Shapefile Documented in ./R/data.R (roxygen - ~.R/)
@@ -51,7 +52,7 @@ Pak_Shapfiles <-
 ################################################################################
 ##run this script to replace the old shapefiles in the .~/data/
 
-# usethis::use_data(Pak_Shapfiles, overwrite = TRUE)
+ # usethis::use_data(Pak_Shapfiles, overwrite = TRUE)
 
 ################################################################################
 

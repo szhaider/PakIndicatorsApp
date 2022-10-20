@@ -44,7 +44,7 @@ MICS_Bal_2020 <-
   pivot_longer(cols = -c(province, district, year, source) ,
                names_to = "indicator", values_to = "value") %>%
   mutate(district1 = paste0(province," , ", district),
-         year_1 = paste0("Balochistan", " : ", year,"-", source),  #
+         year_1 = paste0(year,"-", source, " : ", "Balochistan"),
          definition = indicator,
          indicator_1 = indicator
   ) %>%

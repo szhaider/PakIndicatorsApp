@@ -84,7 +84,7 @@ pak_ind <-
     Kohlu = NA,
     `Kolai Palas Kohistan` = NA,
     `Shaheed Sikandarabad` = NA) %>%
-  
+
   pivot_longer( Awaran:`Shaheed Sikandarabad`,
                 names_to = "district" ,
                 values_to = "value",
@@ -159,10 +159,24 @@ pak_ind <-
   filter(year_1   != "2019-PSLM" &            #Previous 2019 PSLM (NAs) excluded so we can add new dataset
            year_1 != "2019-HIES/PSLM" &
            year_1 != "2018-HIES/PSLM") %>%
-  
+
   filter(
     year_1 != "2019-MICS"   # Exclusing 2019-MICS so we can add 2019-MICS for KP and Sindh (5371 obs)
   ) %>%
   mutate(year = as.numeric(year))
+
+#Making MICS survey years more informative as per feedback
+pak_ind <-
+  pak_ind %>%
+  mutate(year_1 =
+           case_when(
+             year_1 == "2018-MICS" ~ "2018-MICS : Punjab",
+             year_1 == "2016-MICS" ~ "2016-MICS : KP",
+             year_1 == "2014-MICS" ~ "2014-MICS : Punjab & Sindh",
+             year_1 == "2010-MICS" ~ "2010-MICS : Punjab & Balochistan",
+             TRUE ~ year_1
+
+           ))
+
 
 ################################################################################

@@ -15,7 +15,7 @@
 #' @importFrom glue glue
 #' @importFrom dplyr filter
 #' @import shiny
-#'
+#' @importFrom shinyscreenshot screenshot
 #'
 mod_main_maps_ui <- function(id){
   ns <- NS(id)
@@ -42,31 +42,39 @@ mod_main_maps_ui <- function(id){
 
     # shiny::tabPanel("INTERACTIVE MAPS",
 
-
-                    # tags$head(tags$style(HTML("#main_map {height:100%, width:100%;}"))),
-
-
-                    # width = "100%",
-                    # height = "100%"
-
-
-                    # br(),
-
-
-
 tagList(
                     tags$style(type = "text/css", "#main_maps_1-main_map {height: calc(97vh - 100px) !important;}"),
                     # tags$style(type = 'text/css', '#id-main_map {height: calc(97vh - 100px) !important;}', style= 'padding:0px;'),
                     leaflet::leafletOutput(ns("main_map")),
 
-                    shiny::verbatimTextOutput(ns("source_main")),
-                    tags$head(tags$style("#main_maps_1-source_main {color:black; font-size:12px; font-style:italic;
-                     overflow-y:scroll; max-height: 120px; background: #ffe6cc;}")),
+                    shiny::verbatimTextOutput(ns("source_main_map")),
+                    tags$head(tags$style("#main_maps_1-source_main_map {color:black; font-size:12px; font-style:italic;
+                     max-height: 120px; background: #ffe6cc;}")),
+
+                    shiny::absolutePanel(id = "controls_bin", class = "panel panel-default", fixed= TRUE,
+                                         draggable = FALSE,  right = 15, top = 65,
+                                         width = 250, height = "auto",
+                                         style = "background-color: white;
+                                                   opacity: 0.85;
+                                                   padding: 20px 20px 20px 20px;
+                                                   margin: auto;
+                                                   border-radius: 5pt;
+                                                   box-shadow: 0pt 0pt 6pt 0px rgba(61,59,61,0.48);
+                                                   padding-bottom: 2mm;
+                                                   padding-top: 1mm;",
+
+                                         shiny::numericInput(ns("bins"),
+                                                             label = "Choose number of Bins",
+                                                             min = 3,
+                                                             max= 10,
+                                                             value = 5,
+                                                             step=1)
+                    ),
 
 
                     shiny::absolutePanel(id = "controls", class = "panel panel-default", fixed= TRUE,
                                          draggable = TRUE, bottom = "auto", right = "auto", left = 70, top = 85,
-                                         width = 230, height = "auto",
+                                         width = 260, height = "auto",
                                          style = "background-color: white;
                                                    opacity: 0.85;
                                                    padding: 20px 20px 20px 20px;
@@ -95,7 +103,12 @@ tagList(
                                                             choices = unique(Pak_Indicators_Data$year_1),
                                                             # selected = median(Pak_Indicators_Data$year),
                                                             width = "100%",
-                                                            multiple = FALSE)
+                                                            multiple = FALSE),
+
+                                         downloadButton(ns("mapdata"), "Data", class= "btn-sm"),
+                                         actionButton(ns("screenshot"), "Image",class="btn-sm", icon=icon("camera")),
+                                         actionButton(ns("help_map"), "Help", icon= icon('question-circle'), class ="btn-sm"),
+                                         br(),
 
                     )
     )
@@ -150,7 +163,7 @@ mod_main_maps_server <- function(id){
     shiny::observeEvent(ind_selected(), {
       shiny::req(input$stat)
       updated_years_m <- ind_selected() %>%
-        dplyr::filter(!is.na(value))
+        dplyr::filter(!is.na(value))    #<<<<<<<<<<
       shiny::updateSelectInput(
         session = getDefaultReactiveDomain(),
         "time",
@@ -161,7 +174,9 @@ mod_main_maps_server <- function(id){
     #making a reactive function for dataset to be used based on User's selection
     map_data <- shiny::reactive({
       Pak_Indicators_Data %>%
-        dplyr::filter(indicator == input$stat,
+        dplyr::filter(
+                      domain == input$family,
+                      indicator == input$stat,
                       year_1 == input$time)
     })
 
@@ -175,37 +190,48 @@ mod_main_maps_server <- function(id){
     })
 
     #Color Scheme
-    pal <- reactive ({
-      leaflet::colorBin(palette =  c('#2c7bb6', '#abd9e9', '#ffffbf', '#fdae61', '#d7191c'),
-                        bins= 5,
-                        na.color = "grey",
-                        domain = NULL,
-                        map_data()[,"value"],
-                        pretty = F,
-                        reverse=F
-      )
+    pal_new <- reactive({
+      req(unique(map_data()$context) %in% c("negative", "positive"))
+      if (unique(map_data()$context) == "negative"){
+        rev(grDevices::colorRampPalette(colors = c('#2c7bb6', '#abd9e9', '#ffffbf', '#fdae61', '#d7191c'), space = "Lab")(input$bins))
+      } else {
+        grDevices::colorRampPalette(colors = c('#2c7bb6', '#abd9e9', '#ffffbf', '#fdae61', '#d7191c'), space = "Lab")(input$bins)
+      }
+    })
 
+    #breaks defined
+    breaks <- reactive({
+      req(unique(map_data()$context) %in% c("negative", "positive"))
+        stats::quantile(map_data()$value, seq(0, 1, 1 / (input$bins)), na.rm = TRUE) %>%
+          unique()
+    })
+
+    pal <- reactive ({
+      leaflet::colorBin(palette = pal_new(),
+               bins= breaks(),
+               na.color = "grey",
+               domain = NULL,
+               pretty = F,
+               reverse=T)
     })
 
     # Pal_legend
     pal_leg <- reactive ({
-      leaflet::colorBin(palette = c('#2c7bb6', '#abd9e9', '#ffffbf', '#fdae61', '#d7191c'),
-                        bins= 5,
-                        na.color = "grey",
-                        domain =(map_data()[,"value"]),
-                        pretty = F,
-                        reverse=F
+      leaflet::colorBin(palette = pal_new(),
+               bins= breaks(),
+               na.color = "grey",
+               domain = map_data()[,"value"],
+               pretty = FALSE,
+               reverse=T
       )
     })
 
-
     #Dynamic leaflet
+    # shiny::observeEvent(input$time,{
 
-    shiny::observeEvent(input$time,{
+       shiny::observe({
 
-      # shiny::observe({
-      #
-      #   req(input$family)
+      req(map_data())
 
       leaflet::leafletProxy("main_map",
                             data=Pak_Shapfiles,
@@ -245,7 +271,12 @@ mod_main_maps_server <- function(id){
         leaflet::addLegend("bottomright",
                            pal= pal_leg(),
                            values= map_data()$value,
-                           title = "Indicator",
+                          title =
+                          if(unique(map_data()$units)!=""){
+                          paste0("Indicator", " ","(", unique(map_data()$units), ")")
+                           }else{
+                           "Indicator"
+                           },
                            opacity= 1,
                            labFormat = leaflet::labelFormat(
                              between = " : ",
@@ -253,7 +284,7 @@ mod_main_maps_server <- function(id){
 
     })
 
-    # Message on updation of the PCA Model
+    # Message on updation of the MAPS
     shiny::observe({
       req(input$time)
       shiny::showNotification("Map is being rendered based on the selection",
@@ -261,7 +292,48 @@ mod_main_maps_server <- function(id){
                               duration = 3)
     })
 
+    #Source of the slected indicator
+    output$source_main_map <- shiny::renderText({
+      paste(" Source: ", glue("{ unique(map_data()$source) }"),
+            "\n",
+            "Definition: ", glue("{ unique(map_data()$definition) }"))
+    })
+
+    #Screenshot
+    shiny::observeEvent(input$screenshot,{
+      shinyscreenshot::screenshot(filename = glue::glue("{ input$stat }", " ", "input$time"),
+                                  id = "main_map", scale = 0.90, timer = 1)
+    })
+
+    #Download data underlying the shown map
+    output$mapdata <- shiny::downloadHandler(
+      filename = function(){
+        paste(glue::glue("{ input$stat }"), "_", glue::glue("{ input$time }"), ".csv")
+      },
+      content = function(file){
+        write.csv(map_data() %>% dplyr::select(-context, -positive, -negative, district1), file)
+      }
+    )
+
+#Main Interactive Maps
+    ##############################################.
+    #### Modal  ----
+    ###############################################.
+    shiny::observeEvent(input$help_map, {
+      shiny::showModal(modalDialog(
+        title = "How to use these maps",
+        p("These maps give district (admin2) level estimates of various socioeconomic indicators over the selected filters"),
+        p("All indicators are rounded to 2 decimal points"),
+        # p("All Natural Hazards Indicators are rounded to 3 decimal points"),
+        p("Expect the color mapping to reverse with the context of  the selected indicators - e.g. Poverty (High) = Red whereas; Access to improved toilet facilities (High) = Blue"),
+        size = "m", easyClose = TRUE, fade=FALSE,footer = modalButton("Close (Esc)")))
+    })
+
+
   })
+
+
+
 }
 
 

@@ -95,7 +95,7 @@ MICS_2019_KP_Sindh_combined <-
   left_join(prov_dist, by="district") %>%
   mutate(
     district1 = paste0(province," , ", district),
-    year_1 = paste0("KP & Sindh : ",year,"-", source),
+    year_1 = paste0(year,"-", source, " : ", "KP & Sindh"),
     definition = indicator,
     indicator_1 = indicator
   ) %>%

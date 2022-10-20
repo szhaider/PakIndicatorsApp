@@ -16,6 +16,8 @@ app_ui <- function() {  #request
     shiny::navbarPage(
       title = "Pakistan Indicators",  #Navbar not show up without title
     # fluid = TRUE,
+    # theme = shinythemes::shinytheme("journal"),  #This is nice
+    # theme = shinythemes::shinytheme("yeti"),
 
     header=tags$style(HTML("
                                         .container-fluid{
@@ -32,8 +34,8 @@ app_ui <- function() {  #request
 
 
       # title = "Pakistan Indicators",
-      # theme = shinythemes::shinytheme("journal"),  #This is nice
-      # theme = shinythemes::shinytheme("yeti"),
+
+
       mod_main_maps_ui("main_maps_1")
     )
 )
