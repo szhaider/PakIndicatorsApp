@@ -34,10 +34,23 @@ app_ui <- function() {  #request
     shiny::tabPanel(
       "COMPARISON MAPS",
       mod_comparison_maps_ui("comparison_maps_1")
-                  )
-)
+                  ),
+    shiny::tabPanel(
+      "GRAPHS",
+      mod_main_charts_ui("main_charts_1")
+                    ),
+    shiny::tabPanel(
+      "Time Series",
+      mod_time_series_charts_ui("time_series_charts_1")
+    ),
+    shiny::tabPanel(
+    "TABLES",
+    mod_main_tables_ui("main_tables_1")
     )
 
+    )
+
+    )
 )
 
 }
