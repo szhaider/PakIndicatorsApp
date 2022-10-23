@@ -95,11 +95,18 @@ mod_comparison_maps_ui <- function(id){
             shiny::column(6,
                           offset = 0,
                           style =
-                            "padding-top:1px;
-                                       padding-bottom:0px;
-                                        padding-left:0px;
+                            'padding-bottom:0px;
+                                       padding-left:0px;
                                        padding-right:0px;
-                                       position: relative;",
+                                       margin-left:0px;
+                                       margin-right:-10px;
+                                       position: relative;',
+
+                            # "padding-top:1px;
+                            #            padding-bottom:0px;
+                            #             padding-left:0px;
+                            #            padding-right:0px;
+                            #            position: relative;",
                           tags$head(tags$style(
                             "#comparison_maps_1-source_comp1{color:black;
                                        margin-left:-10px;
@@ -112,12 +119,19 @@ mod_comparison_maps_ui <- function(id){
                           offset = 0,
                           style =
                             'padding-bottom:0px;
-                                    padding-top:1px;
-                                     padding-left:2px;
-                                     padding-right:2px;
+                                       padding-left:2px;
+                                       padding-right:2px;
+                                       margin-left:0px;
+                                       margin-right:5px;
+                                       position: relative;',
 
-                                     margin-left:0px;
-                                     position: relative;',
+                            # 'padding-bottom:0px;
+                            #         padding-top:1px;
+                            #          padding-left:2px;
+                            #          padding-right:5px;
+                            #
+                            #          margin-left:0px;
+                            #          position: relative;',
                           tags$head(tags$style(
                             "#comparison_maps_1-source_comp2{color:black;
                                        font-size:12px; font-style:italic; max-height: 110px; background: #ffe6cc; }")),
@@ -168,14 +182,13 @@ mod_comparison_maps_server <- function(id){
     #Comp Map 2
     #selecting domain
     dom_map_2 <- shiny::reactive({
-      # req(input$family)
       Pak_Indicators_Data %>%
         dplyr::filter(domain == input$domain_map2)
     })
 
     #Updating indicators based on seelcted domain - com map 1
     shiny::observeEvent(dom_map_1(),{
-      req(input$domain_map1)
+      # req(input$domain_map1)
       choices_1 <- unique(dom_map_1()$indicator)
       shiny::updateSelectInput(
         session = getDefaultReactiveDomain(),
@@ -185,7 +198,7 @@ mod_comparison_maps_server <- function(id){
 
     #Updating indicators based on seelcted domain - com map 2
     shiny::observeEvent(dom_map_2(),{
-      req(input$domain_map2)
+      # req(input$domain_map2)
       choices_2 <- unique(dom_map_2()$indicator)
       shiny::updateSelectInput(
         session = getDefaultReactiveDomain(),
@@ -210,7 +223,7 @@ mod_comparison_maps_server <- function(id){
 
     #Updating years based on selected indicator - comp map1
     shiny::observeEvent(ind_selected_1(), {
-      shiny::req(input$indicator_map1)
+      # shiny::req(input$indicator_map1)
       updated_years_m_1 <- ind_selected_1() %>%
         dplyr::filter(!is.na(value))    #<<<<<<<<<<
       shiny::updateSelectInput(
@@ -222,7 +235,7 @@ mod_comparison_maps_server <- function(id){
 
     #Updating years based on selected indicator - comp map2
     shiny::observeEvent(ind_selected_2(), {
-      shiny::req(input$indicator_map2)
+      # shiny::req(input$indicator_map2)
       updated_years_m_2 <- ind_selected_2() %>%
         dplyr::filter(!is.na(value))    #<<<<<<<<<<
       shiny::updateSelectInput(
@@ -332,14 +345,15 @@ mod_comparison_maps_server <- function(id){
     })
 
     #Dynamic leaflet Map 1
+    outputOptions(output, "double_map_1", suspendWhenHidden = FALSE)
 
-    shiny::observe({
+    shiny::observeEvent(map_data_1(), {
 
-      req(map_data_1())
+      # req(map_data_1())
 
       leaflet::leafletProxy("double_map_1",
                             data=Pak_Shapfiles,
-                            deferUntilFlush = FALSE) %>%
+                            deferUntilFlush = TRUE) %>%
 
         leaflet::clearShapes() %>%
         leaflet::addPolygons(label= labels_map_1(),
@@ -390,21 +404,23 @@ mod_comparison_maps_server <- function(id){
 
     # Message on updation of the MAP 1
     shiny::observe({
-      req(input$year_map1)
-      shiny::showNotification("Map is being rendered based on the selection",
+      req(map_data_1())
+      shiny::showNotification("MAP-1 is being rendered based on the selection",
                               type="message",
                               duration = 3)
     })
 
     #Dynamic leaflet Map2
+    #To render leafelt map before proxy observer updates
+    outputOptions(output, "double_map_2", suspendWhenHidden = FALSE)
 
-    shiny::observe({
+    shiny::observeEvent(map_data_2(), {
 
-      req(map_data_2())
+      # req(map_data_2())
 
       leaflet::leafletProxy("double_map_2",
                             data=Pak_Shapfiles,
-                            deferUntilFlush = FALSE) %>%
+                            deferUntilFlush = TRUE) %>%
 
         leaflet::clearShapes() %>%
         leaflet::addPolygons(label= labels_map_2(),
@@ -455,8 +471,8 @@ mod_comparison_maps_server <- function(id){
 
     # Message on updation of the MAP 2
     shiny::observe({
-      req(input$year_map2)
-      shiny::showNotification("Map is being rendered based on the selection",
+      req(map_data_2())
+      shiny::showNotification("MAP-2 is being rendered based on the selection",
                               type="message",
                               duration = 3)
     })

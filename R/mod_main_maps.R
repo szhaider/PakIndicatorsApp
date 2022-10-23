@@ -116,7 +116,6 @@ mod_main_maps_server <- function(id){
     #Main Map
     #selecting domain
     dom_map <- shiny::reactive({
-      # req(input$family)
       Pak_Indicators_Data %>%
         dplyr::filter(domain == input$family)
     })
@@ -266,11 +265,25 @@ mod_main_maps_server <- function(id){
 
     # Message on updation of the MAPS
     shiny::observe({
+      req(input$family)
+      req(input$stat)
       req(input$time)
-      shiny::showNotification("Map is being rendered based on the selection",
+      shiny::showNotification("MAP is being rendered based on the selection",
                               type="message",
                               duration = 3)
     })
+    # shiny::observe({
+    #   req(input$family)
+    #   shiny::showNotification("MAP is being rendered based on the selection",
+    #                           type="message",
+    #                           duration = 3)
+    # })
+    # shiny::observe({
+    #   req(input$stat)
+    #   shiny::showNotification("MAP is being rendered based on the selection",
+    #                           type="message",
+    #                           duration = 3)
+    # })
 
     #Source of the slected indicator
     output$source_main_map <- shiny::renderText({

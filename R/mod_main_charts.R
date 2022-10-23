@@ -46,15 +46,16 @@ mod_main_charts_ui <- function(id){
                                choices = Pak_Indicators_Data %>% distinct(province) %>%
                                  filter(province != "Federal Capital Territory")
                    ),
-                   br(),
+                   # br(),
                    shiny::downloadButton(ns("downloadplot"), "Download Plot", class ="btn-sm")
 
       ),
       mainPanel(
 
-        h4("District-wise Comparison"),
+        # h4("District-wise Comparison"),
         plotOutput(ns("plot1"),
-                   height = "450px", width = 900),
+                   width = '800px',
+                   height = '550px'),
 
         verbatimTextOutput(ns("source_graph")),
         tags$head(tags$style("#main_charts_1-source_graph{color:black; font-size:12px; font-style:italic;
@@ -112,7 +113,7 @@ mod_main_charts_server <- function(id){
     shiny::observeEvent(d_g2(), {
       updated_prov_plot <- d_g2() %>%
         dplyr::filter(!is.na(value),
-               province != "Federal Capital Territory")
+               province != "Islamabad")
       shiny::updateSelectInput(
         session = getDefaultReactiveDomain(),
         "prov",
@@ -131,15 +132,23 @@ mod_main_charts_server <- function(id){
         #        !str_detect(district, "Agency"),
         dplyr::filter(!is.na(value)) %>%
         dplyr::mutate(district = fct_reorder(district, value)) %>%
-        ggplot2::ggplot(aes(value, district)) +
-        ggplot2::geom_col(na.rm= T)+
+        ggplot2::ggplot(aes(value, district )) +
+        ggplot2::geom_col(na.rm= T,  alpha=0.5, fill = "seagreen")+
         # geom_text(aes(label = round(value,1)),
         #       alpha= 0.9, size=3.2,
         #       vjust=1, hjust = 1,
         #       nudge_y= 0.4,
         #       color="white")+
         labs(y= "", x = input$stat)+
-        labs(title = "")
+        ggtitle(input$prov)+
+        theme(plot.title = element_text(hjust=0.5, face = "bold"))+
+        theme(axis.text.x = element_text(size = 14, face = "bold"))+
+        theme(axis.text.y = element_text(size = 9))+theme(
+          axis.line = element_line(color='black'),
+          plot.background = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank())
 
     }
 
@@ -149,9 +158,9 @@ mod_main_charts_server <- function(id){
     })
 
     #Download grpah
-    output$downloadplot1 <- shiny::downloadHandler(
+    output$downloadplot <- shiny::downloadHandler(
       filename = function(){
-        paste0("plot_", glue::glue("{ input$stat }", "_", "{ input$time }"), ".png")
+        paste0("plot_", glue::glue("{ input$stat }",  "_", "{ input$stat }", "_", "{ input$time }"), ".png")
       },
       content = function(file){
         device <- function(..., width, height) grDevices::png(..., width = width, height = height, res = 300, units = "in")

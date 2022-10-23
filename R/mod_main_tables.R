@@ -113,14 +113,16 @@ mod_main_tables_server <- function(id){
       d_t1() %>%
         dplyr::filter(indicator == input$stat,
                       year_1 == input$time,
-                      province == input$prov)
+                      province == input$prov,
+                      !is.na(value))
     })
 
     #making reactive dataset
     d2_2 <- reactive({
       d_t1() %>%
         dplyr::filter(indicator == input$stat,
-                      year_1 == input$time)
+                      year_1 == input$time,
+                      !is.na(value))
     })
 
     #Table specification
@@ -128,6 +130,7 @@ mod_main_tables_server <- function(id){
       d2() %>%
         select(-domain, -source, -definition, -units, -indicator_1,
                -year_1, -positive, -negative, -context, -district1) %>%
+        select(year, province, district, indicator, value) %>%
         arrange(province, district) %>%
         rename(Province = province,
                District = district,
@@ -145,8 +148,9 @@ mod_main_tables_server <- function(id){
     observeEvent(input$national,{
       table2 <- reactive({
         d2_2() %>%
-          select(-domain, -source, -definition, -units, -indicator_1, -year_1, -positive, -negative, -context) %>%
-          arrange(province, district) %>%
+          select(-domain, -source, -definition, -units, -indicator_1,
+                   -year_1, -positive, -negative, -context,  -district1) %>%
+          select(year, province, district, indicator, value) %>%  arrange(province, district) %>%
           rename(Province = province,
                  District = district,
                  Indicator = indicator,
@@ -177,14 +181,7 @@ mod_main_tables_server <- function(id){
       content = function(file){
         write.csv(table1(), file)
       })
-
-
-
   })
 }
 
-## To be copied in the UI
-# mod_main_tables_ui("main_tables_1")
 
-## To be copied in the server
-# mod_main_tables_server("main_tables_1")

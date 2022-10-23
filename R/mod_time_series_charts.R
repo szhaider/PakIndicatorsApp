@@ -62,8 +62,8 @@ mod_time_series_charts_ui <- function(id){
                                   multiple = TRUE)
       ),
       mainPanel(
-
-        h3("Time Trend of Selected Indicators"),
+        br(),
+        # h3("Time Trend of Selected Indicators"),
         plotOutput(ns("plot2"),
                      height = "400px", width = 900) ,
 
@@ -110,7 +110,7 @@ mod_time_series_charts_server <- function(id){
       updated_prov_t <-  d_tt1() %>%
         select(-domain,-indicator_1, -units, -source, -definition, -positive, -negative, -context) %>%
         filter(!is.na(value),
-               province != "Federal Capital Territory") %>%
+               province != "Islamabad") %>%
         distinct(province, year) %>%
         group_by(province) %>%
         filter(n()>=2) %>%
@@ -141,7 +141,15 @@ mod_time_series_charts_server <- function(id){
         geom_point(size=1.25) +
         expand_limits(y=0)+
         labs(x= "Years", y= input$stat,
-             color= "District")
+             color= "District") +
+        theme(axis.text.x = element_text(size = 14, face = "bold"))+
+        theme(axis.text.y = element_text(size = 9))+
+        theme(
+          axis.line = element_line(color='black'),
+          plot.background = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.border = element_blank())
     }
 
     #Rendering chart time series
