@@ -10,7 +10,6 @@
 #' @import shiny
 #' @import dplyr
 #' @import glue
-#' @import DT
 #'
 #'
 mod_main_tables_ui <- function(id){
@@ -44,9 +43,9 @@ mod_main_tables_ui <- function(id){
 
 
                    conditionalPanel(condition =  sprintf("input['%s'] == '0'", ns("national")) ,
-                   selectInput(ns("prov"),
-                               "Select Province: ",
-                               choices = unique(Pak_Indicators_Data$province))
+                                    selectInput(ns("prov"),
+                                                "Select Province: ",
+                                                choices = unique(Pak_Indicators_Data$province))
                    ),
                    verbatimTextOutput(ns("table_note")),
                    tags$head(tags$style("#main_tables_1-table_note{color:black; font-size:12px; font-style:italic;
@@ -58,12 +57,12 @@ overflow-y:scroll; max-height: 120px; background: #ffe6cc;}")),
       ),
 
       mainPanel(
-        # column(width = 12,
-               DT::DTOutput(ns("table")),   #width =900
-               downloadButton(ns("downloadtable"),
-                              "Download Table",
-                              class = "btn-sm")
-        # )
+        column(width = 12,
+        DT::dataTableOutput(ns("table")),
+        downloadButton(ns("downloadtable"),
+                       "Download Table",
+                       class = "btn-sm")
+         )
       )
     )
   )
@@ -134,17 +133,21 @@ mod_main_tables_server <- function(id){
         select(year, province, district, indicator, value) %>%
         arrange(province, district) %>%
         rename(
-               Year    = year,
-               Province = province,
-               District = district,
-               Indicator = indicator,
-               Value = value)
+          Year    = year,
+          Province = province,
+          District = district,
+          Indicator = indicator,
+          Value = value)
     })
 
     #Rendering table
-    output$table <- DT::renderDT({
+    output$table <- DT::renderDataTable({   #DT::renderDT
       DT::datatable(table1(),
-                    options= list(pageLength=25))
+                    extensions = "Buttons",
+                    options= list(pageLength=38,
+                                  lengthChange = FALSE,
+                                  dom = "Blfrtip",
+                                  buttons = c("copy", "csv", "excel", "pdf")))
     })
 
     #For national level table, for 1 go download
@@ -152,21 +155,26 @@ mod_main_tables_server <- function(id){
       table2 <- reactive({
         d2_2() %>%
           select(-domain, -source, -definition, -units, -indicator_1,
-                   -year_1, -positive, -negative, -context,  -district1) %>%
+                 -year_1, -positive, -negative, -context,  -district1) %>%
           select(year, province, district, indicator, value) %>%  arrange(province, district) %>%
           rename(
-                 Year     = year,
-                 Province = province,
-                 District = district,
-                 Indicator = indicator,
-                 Value = value)
+            Year     = year,
+            Province = province,
+            District = district,
+            Indicator = indicator,
+            Value = value)
       })
       #rendering national level table
-      output$table <- DT::renderDT({
-        suppressWarnings(
-        DT::datatable(table2(),
-                      options= list(pageLength=25))
-        )
+      output$table <- DT::renderDataTable({   #DT::renderDT
+
+        DT::datatable(
+          table2(),
+          extensions = "Buttons",
+          options= list(pageLength=38,
+                        lengthChange = FALSE,
+                        dom = "Blfrtip",
+                        buttons = c("copy", "csv", "excel", "pdf")))
+
       })
       #Download national level table
       output$downloadtable <- downloadHandler(

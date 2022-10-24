@@ -55,7 +55,7 @@ mod_main_charts_ui <- function(id){
         # h4("District-wise Comparison"),
         plotOutput(ns("plot1"),
                    width = '800px',
-                   height = '550px'),
+                   height = '500px'),
 
         verbatimTextOutput(ns("source_graph")),
         tags$head(tags$style("#main_charts_1-source_graph{color:black; font-size:12px; font-style:italic;

@@ -61,9 +61,9 @@ app_ui <- function() {  #request
     tabsetPanel(
       id="about_app",
 
-    tabPanel("ABOUT",
-    mod_about_ui("about_1")
-             ),
+    # tabPanel("ABOUT",
+    # mod_about_ui("about_1")
+    #          ),
     tabPanel("DOCUMENTATION",
     mod_document_ui("document_1")
     ),

@@ -19,9 +19,9 @@ mod_document_ui <- function(id){
 
     mainPanel(
       br(),
-      h4(strong("This App covers District level maps of Pakistan for various Social and Welfare Indicators")),
+      h4(strong("This App covers district level spatial disparities in Pakistan for various Social and Welfare Indicators")),
       br(),
-      h4(strong("The App may be used to assess the changes over time in various Districts of Pakistan")),
+      h4(strong("The App can be used to explore the changes  in socio-economic indicators over time")),
       tags$hr(),
       fluidRow(downloadButton(ns("bulkdownload"), "Download Complete Dataset",
                               class = "btn-success"),
