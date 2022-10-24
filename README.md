@@ -29,6 +29,9 @@ You can install the development version of PakIndicatorsApp like so:
 ``` r
 # To install the application 
 remotes::install_github("szhaider/PakIndicatorsApp")
+
+# To launch the app locally
+PakIndicatorsApp::run_app()
 ```
 
 ## Example
