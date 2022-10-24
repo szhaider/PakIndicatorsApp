@@ -45,20 +45,20 @@ remotes::install_github("szhaider/PakIndicatorsApp")
 
 This is a basic details about the data used in the application:
 
-```{r Doamins}
+```{r Doamins, echo=FALSE}
 ## Doamins covered
 unique(Pak_Indicators_Data$domain)
 
 ```
 
 
-```{r time}
+```{r time, echo=FALSE}
 ##Years Covered
 unique(Pak_Indicators_Data$year)
 
 ```
 
-```{r surveys}
+```{r surveys, echo=FALSE}
 ##Surveys over the years
 unique(Pak_Indicators_Data$year_1)
 
