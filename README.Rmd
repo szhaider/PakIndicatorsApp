@@ -23,12 +23,12 @@ library(PakIndicatorsApp)
 The goal of PakIndicatorsApp is to provide a scaffolding for the schematic and efficient management and visualization of the district level indicators of Pakistan, for multiple rounds of the household surveys. It covers a variety of socio-economic (SDG related) indicators ranging from  poverty incidence, labor market outcomes, health and nutrition, stunting and wasting, food security and so on.
 We will be updating the app based on the data availability and revisions/feedback.
 
-##Data Coverage
+## Data Coverage
 
 Currently, the portal covers HIES, PLSM, MICS and NNS surveys. (various rounds from 2004 to 2020)
 
 
-##Usage
+## Usage
 
 The app can specifically be used to explore spatial disparities in development outcomes at district (adm2) level in the country.
 
@@ -43,25 +43,32 @@ remotes::install_github("szhaider/PakIndicatorsApp")
 
 ## Example
 
-This is a basic details about the data used in the application:
+These are some basic details about the data used in the application:
+
+## Doamins covered
 
 ```{r Doamins, echo=FALSE}
-## Doamins covered
 unique(Pak_Indicators_Data$domain)
 
 ```
-
+## Years Covered
 
 ```{r time, echo=FALSE}
-##Years Covered
 unique(Pak_Indicators_Data$year)
 
 ```
+## Surveys over the years
+
 
 ```{r surveys, echo=FALSE}
-##Surveys over the years
 unique(Pak_Indicators_Data$year_1)
 
 ```
 
+## Indicators covered
 
+
+```{r indicators, echo=FALSE}
+unique(Pak_Indicators_Data$indicator)[-260]
+
+```
