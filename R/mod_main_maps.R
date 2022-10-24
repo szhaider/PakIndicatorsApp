@@ -272,18 +272,7 @@ mod_main_maps_server <- function(id){
                               type="message",
                               duration = 3)
     })
-    # shiny::observe({
-    #   req(input$family)
-    #   shiny::showNotification("MAP is being rendered based on the selection",
-    #                           type="message",
-    #                           duration = 3)
-    # })
-    # shiny::observe({
-    #   req(input$stat)
-    #   shiny::showNotification("MAP is being rendered based on the selection",
-    #                           type="message",
-    #                           duration = 3)
-    # })
+
 
     #Source of the slected indicator
     output$source_main_map <- shiny::renderText({
@@ -329,10 +318,3 @@ mod_main_maps_server <- function(id){
 
 }
 
-
-
-## To be copied in the UI
-# mod_main_maps_ui("main_maps_1")
-
-## To be copied in the server
-# mod_main_maps_server("main_maps_1")

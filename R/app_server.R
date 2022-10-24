@@ -11,4 +11,7 @@ app_server <- function(input, output, session) {
   mod_main_charts_server("main_charts_1")
   mod_time_series_charts_server("time_series_charts_1")
   mod_main_tables_server("main_tables_1")
+  # mod_feedback_server("feedback_1")
+  mod_document_server("document_1")
+  mod_scatterplots_server("scatterplots_1")
 }

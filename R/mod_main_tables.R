@@ -43,10 +43,11 @@ mod_main_tables_ui <- function(id){
                                choices = unique(Pak_Indicators_Data$year_1)),
 
 
+                   conditionalPanel(condition =  sprintf("input['%s'] == '0'", ns("national")) ,
                    selectInput(ns("prov"),
                                "Select Province: ",
-                               choices = unique(Pak_Indicators_Data$province)),
-
+                               choices = unique(Pak_Indicators_Data$province))
+                   ),
                    verbatimTextOutput(ns("table_note")),
                    tags$head(tags$style("#main_tables_1-table_note{color:black; font-size:12px; font-style:italic;
 overflow-y:scroll; max-height: 120px; background: #ffe6cc;}")),
@@ -132,7 +133,9 @@ mod_main_tables_server <- function(id){
                -year_1, -positive, -negative, -context, -district1) %>%
         select(year, province, district, indicator, value) %>%
         arrange(province, district) %>%
-        rename(Province = province,
+        rename(
+               Year    = year,
+               Province = province,
                District = district,
                Indicator = indicator,
                Value = value)
@@ -151,15 +154,19 @@ mod_main_tables_server <- function(id){
           select(-domain, -source, -definition, -units, -indicator_1,
                    -year_1, -positive, -negative, -context,  -district1) %>%
           select(year, province, district, indicator, value) %>%  arrange(province, district) %>%
-          rename(Province = province,
+          rename(
+                 Year     = year,
+                 Province = province,
                  District = district,
                  Indicator = indicator,
                  Value = value)
       })
       #rendering national level table
       output$table <- DT::renderDT({
+        suppressWarnings(
         DT::datatable(table2(),
                       options= list(pageLength=25))
+        )
       })
       #Download national level table
       output$downloadtable <- downloadHandler(
