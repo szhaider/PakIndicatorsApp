@@ -33,6 +33,10 @@ remotes::install_github("szhaider/PakIndicatorsApp")
 # To launch the app locally
 library(PakIndicatorsApp)
 PakIndicatorsApp::run_app()
+
+#To run directly from Github
+library(shiny)
+shiny::runGitHub("PakIndicatorsApp", "szhaider")
 ```
 
 ## Example
